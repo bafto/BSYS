@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         close(pipefd[0]);
         char buff[100];
         scanf("%s", buff);
-        printf("%s\n", buff);
+        printf("child1 sent: %s\n", buff);
         return 0;
     default:
         break;
