@@ -6,6 +6,9 @@
 #include <sys/types.h>
 #include <signal.h>
 
+#define R 0
+#define W 1
+
 int main(int argc, char* argv[]) {
     int pipefd[2];
     if (pipe(pipefd) != 0) exit(1);
@@ -15,15 +18,15 @@ int main(int argc, char* argv[]) {
         perror("fork\n");
         exit(1);
     case 0:
-        close(pipefd[0]);
+        close(pipefd[R]);
         printf("Hello\n");
-        close(pipefd[1]);
+        close(pipefd[W]);
         return 0;
     }
-    close(pipefd[1]);
+    close(pipefd[W]);
     char buf[1];
-    read(pipefd[0], buf, 1);
-    close(pipefd[0]);
+    read(pipefd[R], buf, 1);
+    close(pipefd[R]);
     printf("Goodbye\n");
     return 0;
 }
