@@ -12,7 +12,6 @@ int main(int argc, char* argv[]) {
         exit(1);
     case 0:
         printf("%d waiting in child\n", wait(NULL));
-        execl("/bin/ls", "/bin/ls", "-l", NULL);
         return 0;
     }
     printf("child: %d\n", pid);

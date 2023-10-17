@@ -12,12 +12,11 @@ int main(int argc, char* argv[]) {
         exit(1);
     case 0:
         close(STDOUT_FILENO);
-        printf("%d waiting in child\n", wait(NULL));
-        return 0;
+        return printf("%d waiting in child\n", wait(NULL));
     }
     printf("child: %d\n", pid);
     int exit_code;
     pid_t returned = wait(&exit_code);
-    printf("%d returned\n", returned);
+    printf("%d returned %d\n", returned, WEXITSTATUS(exit_code));
     return 0;
 }
