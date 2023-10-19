@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
 
     qsort(diff_all, N, sizeof(struct timespec), compare_timespec);
 
+    printf("N=%d\n", N);
     printf("Average time: %ld.%ld\n", diff_avg.tv_sec, diff_avg.tv_nsec);
     printf("Median time: %ld.%ld\n", diff_all[N / 2].tv_sec, diff_all[N / 2].tv_nsec);
 
