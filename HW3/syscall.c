@@ -27,14 +27,12 @@ int compare_timespec(const void* a, const void* b) {
 }
 
 int main(int argc, char* argv[]) {
-    int null = open("/dev/null", O_RDONLY);
-
     struct timespec diff_all[N];
     struct timespec diff_avg;
     for (int i = 0; i < N; i++) {
         struct timespec start;
         timespec_get(&start, TIME_UTC);
-        read(null, NULL, 0);
+        read(0, NULL, 0);
         struct timespec end;
         timespec_get(&end, TIME_UTC);
         diff_avg.tv_nsec += end.tv_nsec - start.tv_nsec;
@@ -48,8 +46,8 @@ int main(int argc, char* argv[]) {
     qsort(diff_all, N, sizeof(struct timespec), compare_timespec);
 
     printf("N=%d\n", N);
-    printf("Average time: %ld.%ld\n", diff_avg.tv_sec, diff_avg.tv_nsec);
-    printf("Median time: %ld.%ld\n", diff_all[N / 2].tv_sec, diff_all[N / 2].tv_nsec);
+    printf("Average time: %lds.%ldns\n", diff_avg.tv_sec, diff_avg.tv_nsec);
+    printf("Median time: %lds.%ldns\n", diff_all[N / 2].tv_sec, diff_all[N / 2].tv_nsec);
 
     return EXIT_SUCCESS;
 }
