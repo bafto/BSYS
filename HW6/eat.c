@@ -10,14 +10,14 @@ int main(int argc, char* argv[]) {
     int ms = atoi(argv[2]);
 
     char* mem[MAX];
-    printf("eating %dmb\n", mb);
+    printf("eating %dmb for %dms\n", mb, ms);
     for (int i = 0; i < mb; i++) {
         if (!(mem[i] = malloc(1024 * 1024))) {
             printf("Failed to allocate\n");
             return 1;
         }
     }
-    while(clock() / CLOCKS_PER_SEC * 1000 < ms ) {
+    while(ms < 0 || clock() / CLOCKS_PER_SEC * 1000 < ms ) {
         for (int i = 0; i < mb; i++) {
             for (int j = 0; j < 1024 * 1024; j++) {
                 mem[i][j] = 0;
