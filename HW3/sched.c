@@ -146,12 +146,12 @@ int main(int argc, char* argv[]) {
     parent_parent_diff_avg.tv_sec /= N;
 
     printf("N=%d\n", N);   
-    printf("Avrg parent-child: %ld.%ld\n", parent_child_diff_avg.tv_sec, parent_child_diff_avg.tv_nsec);
-    printf("Median parent-child: %ld.%ld\n", parent_child_diff[N / 2].tv_sec, parent_child_diff[N / 2].tv_nsec);
-    printf("Avrg child-parent: %ld.%ld\n", child_parent_diff_avg.tv_sec, child_parent_diff_avg.tv_nsec);
-    printf("Median child-parent: %ld.%ld\n", child_parent_diff[N / 2].tv_sec, child_parent_diff[N / 2].tv_nsec);
-    printf("Avrg parent-parent: %ld.%ld\n", parent_parent_diff_avg.tv_sec, parent_parent_diff_avg.tv_nsec);
-    printf("Median parent-parent: %ld.%ld\n", parent_parent_diff[N / 2].tv_sec, parent_parent_diff[N / 2].tv_nsec);
+    printf("Avrg parent-child: %lds.%ldns\n", parent_child_diff_avg.tv_sec, parent_child_diff_avg.tv_nsec);
+    printf("Median parent-child: %lds.%ldns\n", parent_child_diff[N / 2].tv_sec, parent_child_diff[N / 2].tv_nsec);
+    printf("Avrg child-parent: %lds.%ldns\n", child_parent_diff_avg.tv_sec, child_parent_diff_avg.tv_nsec);
+    printf("Median child-parent: %lds.%ldns\n", child_parent_diff[N / 2].tv_sec, child_parent_diff[N / 2].tv_nsec);
+    printf("Avrg parent-parent: %lds.%ldns\n", parent_parent_diff_avg.tv_sec, parent_parent_diff_avg.tv_nsec);
+    printf("Median parent-parent: %lds.%ldns\n", parent_parent_diff[N / 2].tv_sec, parent_parent_diff[N / 2].tv_nsec);
 
     return EXIT_SUCCESS;
 }
