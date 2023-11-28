@@ -45,7 +45,7 @@ Alles out of bounds
 
 # Question 3
 
-`python ./pagin-linear-translate.py -P 8 -a 32 -p 1024 -v -s 1` realistisch, 4 Pages pro Address Space, 128 Physische
+`python ./pagin-linear-translate.py -P 8 -a 32 -p 1024 -v -s 1` realistisch, 4 Pages pro Address Space, 128 Physische, halt insgesamt zu klein für ein echtes system
 
 14 -> 782 [VPN 1]
 20 -> SEGV
