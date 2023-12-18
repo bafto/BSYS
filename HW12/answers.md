@@ -9,6 +9,8 @@
 0x17f5 -> PDE() -> 0x07
 0x7f6c -> invalid
 0x0bad -> invalid
+0x6d60 -> invalid
+0x2a5b -> invalid
 
 # Question 3
 
