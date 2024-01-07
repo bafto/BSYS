@@ -20,7 +20,7 @@ Wieder spin lock, aber mit test-and-set
 
 # Question 6
 
-funktioniert immer noch nicht korrekt, keine ahnung warum
+funktioniert
 
 # Question 7
 
