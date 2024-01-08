@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     pthread_t p;
     printf("parent: begin\n");
     // init semaphore here
-	Sem_init(s, 0);
+	Sem_init(&s, 0);
     Pthread_create(&p, NULL, child, NULL);
     // use semaphore here
 	Sem_wait(&s);
