@@ -34,3 +34,10 @@ Tatsächlich waren es etwas mehr als 5 Sekunden.
 Ich erwarte die Selbe Zeit wie bei Frage 6, da der Producer kein bottleneck ist sondern praktisch unendlich schnell ist im Vergleich zu den 1s Consumern.
 
 # Frage 8
+
+Das sollte nicht möglich sein, nur bei mehreren consumern ist ein Deadlock möglich.
+
+# Frage 9
+
+
+
