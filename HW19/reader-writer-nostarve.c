@@ -20,38 +20,38 @@ void rwlock_init(rwlock_t *rw) {
 }
 
 void rwlock_acquire_readlock(rwlock_t *rw) {
-	sem_wait(&rw->read_lock);
-	sem_post(&rw->read_lock);
-	sem_wait(&rw->lock);
+	Sem_wait(&rw->read_lock);
+	Sem_post(&rw->read_lock);
+	Sem_wait(&rw->lock);
 
 	rw->readers++;
 	if (rw->readers == 1) {
-		sem_wait(&rw->write_lock);
+		Sem_wait(&rw->write_lock);
 	}
 
-	sem_post(&rw->lock);
+	Sem_post(&rw->lock);
 }
 
 void rwlock_release_readlock(rwlock_t *rw) {
-	sem_wait(&rw->lock);
+	Sem_wait(&rw->lock);
 
 	rw->readers--;
 	if (rw->readers == 0) {
-		sem_post(&rw->write_lock);
+		Sem_post(&rw->write_lock);
 	}
 
-	sem_post(&rw->lock);
+	Sem_post(&rw->lock);
 }
 
 void rwlock_acquire_writelock(rwlock_t *rw) { 
-	sem_wait(&rw->read_lock);
-	sem_wait(&rw->write_lock); 
+	Sem_wait(&rw->read_lock);
+	Sem_wait(&rw->write_lock); 
 }
 
 
 void rwlock_release_writelock(rwlock_t *rw) { 
-	sem_post(&rw->write_lock); 
-	sem_post(&rw->read_lock);
+	Sem_post(&rw->write_lock); 
+	Sem_post(&rw->read_lock);
 }
 
 //
