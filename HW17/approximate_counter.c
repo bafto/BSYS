@@ -5,6 +5,15 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+int stick_this_thread_to_core(int core_id) {
+   cpu_set_t cpuset;
+   CPU_ZERO(&cpuset);
+   CPU_SET(core_id, &cpuset);
+
+   pthread_t current_thread = pthread_self();    
+   return pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+}
+
 #define N 10
 #define NUM_CPUS 8
 
@@ -19,14 +28,20 @@ typedef struct {
 typedef struct {
 	int n;
 	approx_counter_t *counter;
+	int cpu;
 } thread_arg_t;
 
 void *thread(void *arg) {
 	thread_arg_t *thread_arg = (thread_arg_t *)arg;
 	approx_counter_t *counter = thread_arg->counter;
+	int cpu = thread_arg->cpu;
+
+	if (stick_this_thread_to_core(cpu) != 0) {
+		printf("Failed to stick thread to core %d\n", cpu);
+		return NULL;
+	}
 
 	for (int i = 0; i < thread_arg->n; i++) {
-		int cpu = sched_getcpu();
 		pthread_mutex_lock(&counter->local_locks[cpu]);
 		counter->local_counter[cpu]++;
 		if (counter->local_counter[cpu] >= counter->threshhold) {
@@ -70,6 +85,8 @@ int main(int argc, char *argv[]) {
 		gettimeofday(&before, NULL);
 
 		for (long i = 0; i < num_threads; i++) {
+			thread_arg_t this_arg = thread_arg;
+			this_arg.cpu = i % NUM_CPUS;
 			pthread_create(&threads[i], NULL, thread, (void *)&thread_arg);
 		}
 		for (long i = 0; i < num_threads; i++) {
