@@ -39,5 +39,12 @@ Das sollte nicht möglich sein, nur bei mehreren consumern ist ein Deadlock mög
 
 # Frage 9
 
+`-P 0,0,0,0,0,0,1` sorgt dafür, dass es wenn der Buffer leer ist und nichts mehr produced wird einen Deadlock gibt. (ausprobieren)
 
+# Frage 10
 
+Mit nur einem Consumer geht es, mit zweien kann man es mit `-C 0,0,0,1:0,0,0,1` kaputt machen, mit dem Fehler "tried to get empty buffer"
+
+# Frage 11
+
+Mehrere Threads könnten gleichzeitig in den Kritischen Bereich kommen. Hab keinen Sleep String :(.
